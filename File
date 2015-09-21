@@ -1,0 +1,10 @@
+require 'telegramAPI'
+token = "110284688:AAH3D7hJEujt3hpt29R5Enva6py6MCQUe9w"
+api = TelegramAPI.new token
+while true do
+ # Get last messages if there are, or wait 180 seconds for new messages
+ u = api.getUpdates {:timeout=>180}
+ u.each do |m|
+ api.sendMessage(m.message.chat.id, m.message.text)
+ end
+end
